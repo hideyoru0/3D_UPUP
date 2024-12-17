@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;   //UI 사용을 위해서 추가
 
 public class Player : MonoBehaviour
 {
     public float speed;
     public Follow follow; //스폰된 플레이어로 카메라 이동
+    public GameManager gameManager;
+    public GameObject UIRestartBtn;
+    public Text UIStage;
 
     float hAxis;
     float vAxis;
@@ -23,11 +28,13 @@ public class Player : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
         anim = GetComponentInChildren<Animator>();  //Player 자식 오브젝트에 있으므로
         follow = FindFirstObjectByType<Follow>(); //스폰된 플레이어로 카메라 이동
+        gameManager = FindFirstObjectByType<GameManager>(); //게임 매니저 등록
     }
 
     void Start()
     {
         follow.target = this.transform;    //스폰된 플레이어로 카메라 이동
+        gameManager.player = this;         //게임 매니저에 지정된 플레이어가 이 스크립트로 지정
     }
 
     void Update()
@@ -79,6 +86,13 @@ public class Player : MonoBehaviour
             anim.SetBool("isJump", false);
             isJump = false;
         }
+        else if (collision.gameObject.tag == "DeadZone")
+        {
+            //재시작 버튼 UI
+            gameManager.UIRestartBtn.SetActive(true);
+            TextMeshProUGUI btnText = gameManager.UIRestartBtn.GetComponentInChildren<TextMeshProUGUI>();   //버튼 텍스트는 자식 오브젝트이므로 InChildren을 붙여야함
+            //btnText.text = "Clear!";
+        }
     }
 
     void OnCollisionStay(Collision collision)
@@ -92,6 +106,15 @@ public class Player : MonoBehaviour
             OnJumpFloor();
         }
     }
+    void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.tag == "Finish")
+        {
+            //다음 스테이지로 이동
+            gameManager.NextStage();
+        }
+    }
+
 
     void OnJumpFloor()
     {   
@@ -99,5 +122,10 @@ public class Player : MonoBehaviour
         //목표물 기준 왼쪽에서 닿으면 왼쪽으로, 오른쪽에서 닿으면 오른쪽으로
         //int dirc = transform.position.y - targetPos.y > 0 ? 1 : -1;
         rigid.AddForce(Vector3.up * 10, ForceMode.Impulse);
+    }
+
+    public void VelocityZero()
+    {
+        rigid.velocity = Vector3.zero;
     }
 }
