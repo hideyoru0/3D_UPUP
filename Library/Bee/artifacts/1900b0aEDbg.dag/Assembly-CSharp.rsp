@@ -395,6 +395,7 @@
 "Assets/Scripts/Player.cs"
 "Assets/Scripts/PrefabGameManager.cs"
 "Assets/Scripts/UIManager.cs"
+"Assets/Vertical 2D Shooting BE4/ReadMe/Scripts/ReadmeBE4.cs"
 -langversion:9.0
 
 /deterministic
