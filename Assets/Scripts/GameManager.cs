@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
 
     void PlayerReposition()
     {   //플레이어 위치 되돌리기 함수
-        player.transform.position = new Vector3(0, 0, -1);  //플레이어 위치 이동
+        player.transform.position = new Vector3(-5.0f, 5.0f, 5.0f);  //플레이어 위치 이동
         player.VelocityZero();  //플레이어 낙하 속도 0으로 만들기
     }
 
@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
         else
         {  //게임 클리어시
             //멈추기
-            Time.timeScale = 0;
+            //Time.timeScale = 0;
 
             //재시작 버튼 UI
             UIRestartBtn.SetActive(true);
@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
 
     public void Restart()
     {
-        Time.timeScale = 1; //재시작시 시간 복구
+        //Time.timeScale = 1; //재시작시 시간 복구
         SceneManager.LoadScene(0);
     }
 }
