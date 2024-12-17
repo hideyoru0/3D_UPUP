@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
     {
         if (jDown && !isJump)
         {
-            rigid.AddForce(Vector3.up * 10, ForceMode.Impulse);
+            rigid.AddForce(Vector3.up * 15, ForceMode.Impulse);
             anim.SetBool("isJump", true);
             anim.SetTrigger("doJump");
             isJump = true;
@@ -79,5 +79,25 @@ public class Player : MonoBehaviour
             anim.SetBool("isJump", false);
             isJump = false;
         }
+    }
+
+    void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.tag == "SuperFloor")
+        {
+            anim.SetBool("isJump", false);
+            isJump = false;
+            //충돌시 튕겨짐
+            //목표물 기준 왼쪽에서 닿으면 왼쪽으로, 오른쪽에서 닿으면 오른쪽으로
+            OnJumpFloor();
+        }
+    }
+
+    void OnJumpFloor()
+    {   
+        //충돌시 튕겨짐
+        //목표물 기준 왼쪽에서 닿으면 왼쪽으로, 오른쪽에서 닿으면 오른쪽으로
+        //int dirc = transform.position.y - targetPos.y > 0 ? 1 : -1;
+        rigid.AddForce(Vector3.up * 10, ForceMode.Impulse);
     }
 }
