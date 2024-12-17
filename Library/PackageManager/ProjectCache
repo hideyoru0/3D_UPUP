@@ -5,7 +5,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638699190034476715
+      ticks: 638700159571649319
     m_Hash: 1463767031
   m_LockFileStatus:
     m_FilePath: D:/jtsgrit/3D_UPUP/Packages/packages-lock.json
@@ -13,7 +13,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638699190042739141
+      ticks: 638700159571649319
     m_Hash: 2695201062
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
@@ -3625,9 +3625,11 @@ m_ResolvedPackages:
     - 1.1.0
     - 1.1.1
     - 1.2.2
+    - 1.2.3
     compatible:
     - 1.2.2
-    recommended: 1.2.2
+    - 1.2.3
+    recommended: 1.2.3
     deprecated: []
   dependencies: []
   resolvedDependencies: []

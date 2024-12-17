@@ -12,17 +12,30 @@ public class GameManager : MonoBehaviour
     public Player player;
     public Text UIStage;
     public GameObject UIRestartBtn;
+    public GameObject UIExitBtn;
+    public bool isGameover { get; private set; } // 게임 오버 상태
+    public bool isGameStart { get; private set; }
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        Time.timeScale = 1; // 게임시작시 타이머 시작
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.anyKeyDown && !isGameStart)
+        {
+            // 게임 시작시 UI 켜기
+            UIManager.instance.titleText.transform.parent.gameObject.SetActive(true); // 부모 객체까지 가져온다
+            UIManager.instance.stageText.gameObject.SetActive(true);
+
+            isGameStart = true;
+            // 게임 시작 후 타이틀 끄기
+            UIManager.instance.titleText.gameObject.SetActive(false);
+        }
     }
 
     void PlayerReposition()
@@ -60,5 +73,10 @@ public class GameManager : MonoBehaviour
     {
         //Time.timeScale = 1; //재시작시 시간 복구
         SceneManager.LoadScene(0);
+    }
+
+    public void Exit()
+    {
+        Application.Quit();
     }
 }

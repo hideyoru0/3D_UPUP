@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     public Follow follow; //스폰된 플레이어로 카메라 이동
     public GameManager gameManager;
     public GameObject UIRestartBtn;
+    public GameObject UIExitBtn;
     public Text UIStage;
 
     float hAxis;
@@ -88,10 +89,17 @@ public class Player : MonoBehaviour
         }
         else if (collision.gameObject.tag == "DeadZone")
         {
+            anim.SetBool("doDodge", true);
+            isJump = false;
             //재시작 버튼 UI
             gameManager.UIRestartBtn.SetActive(true);
+            gameManager.UIExitBtn.SetActive(true);
             TextMeshProUGUI btnText = gameManager.UIRestartBtn.GetComponentInChildren<TextMeshProUGUI>();   //버튼 텍스트는 자식 오브젝트이므로 InChildren을 붙여야함
-            //btnText.text = "Clear!";
+            TextMeshProUGUI ExitbtnText = gameManager.UIExitBtn.GetComponentInChildren<TextMeshProUGUI>();
+
+            //사망시 3초 후 멈추기(사망 애니 재생안됨)
+            //new WaitForSeconds(3);
+            //Time.timeScale = 0;
         }
     }
 

@@ -24,7 +24,8 @@ public class PrefabGameManager : MonoBehaviour
         }
 
         // 마지막 골라인 맵을 생성하고 y축 150.0f, z축으로 50.0f만큼 떨어진 곳에 생성한다.
-        Instantiate(goalMap, new Vector3(0, 10.0f, 10.0f), Quaternion.identity);
+        //Instantiate(goalMap, new Vector3(0, 10.0f, 10.0f), Quaternion.identity); // 테스트용 좌표
+        Instantiate(goalMap, new Vector3(Random.Range(-10.0f, 10.0f), Random.Range(150.0f, 50.0f), Random.Range(100.0f, 10.0f)), Quaternion.identity);
 
         //플레이어를 spawnPoint에 생성한다.
         Instantiate(player, spawnPoint);
