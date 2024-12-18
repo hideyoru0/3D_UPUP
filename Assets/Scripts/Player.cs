@@ -12,7 +12,21 @@ public class Player : MonoBehaviour
     public GameObject UIRestartBtn;
     public GameObject UIExitBtn;
     public Text UIStage;
+    public AudioClip deathClip;
 
+    private AudioSource playerAudio;
+
+    /// <summary>
+    /// 조이스틱 컨트롤 미완성
+    /// </summary>
+    public bool[] joyControl;
+    public bool isControl;
+    public bool isButtonA;
+    public bool isButtonB;
+    /// <summary>
+    /// 
+    /// </summary>
+    
     float hAxis;
     float vAxis;
     bool wDown;
@@ -36,6 +50,7 @@ public class Player : MonoBehaviour
     {
         follow.target = this.transform;    //스폰된 플레이어로 카메라 이동
         gameManager.player = this;         //게임 매니저에 지정된 플레이어가 이 스크립트로 지정
+        playerAudio = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -96,6 +111,13 @@ public class Player : MonoBehaviour
             gameManager.UIExitBtn.SetActive(true);
             TextMeshProUGUI btnText = gameManager.UIRestartBtn.GetComponentInChildren<TextMeshProUGUI>();   //버튼 텍스트는 자식 오브젝트이므로 InChildren을 붙여야함
             TextMeshProUGUI ExitbtnText = gameManager.UIExitBtn.GetComponentInChildren<TextMeshProUGUI>();
+
+            // 사망시 스테이지 텍스트 끄기
+            UIManager.instance.stageText.gameObject.SetActive(false);
+
+            // 사망 오디오 재생
+            playerAudio.clip = deathClip;
+            playerAudio.Play();
 
             //사망시 3초 후 멈추기(사망 애니 재생안됨)
             //new WaitForSeconds(3);

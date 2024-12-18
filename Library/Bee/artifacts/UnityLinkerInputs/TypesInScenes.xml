@@ -4,6 +4,7 @@
 		<type fullname="GameManager" preserve="nothing"/>
 		<type fullname="Player" preserve="nothing"/>
 		<type fullname="PrefabGameManager" preserve="nothing"/>
+		<type fullname="UIManager" preserve="nothing"/>
 	</assembly>
 	<assembly fullname="Unity.TextMeshPro">
 		<type fullname="TMPro.TextMeshProUGUI" preserve="nothing"/>

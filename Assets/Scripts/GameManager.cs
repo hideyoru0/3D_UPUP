@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
         if (Input.anyKeyDown && !isGameStart)
         {
             // 게임 시작시 UI 켜기
-            UIManager.instance.titleText.transform.parent.gameObject.SetActive(true); // 부모 객체까지 가져온다
+            UIManager.instance.titleText.transform.parent.gameObject.SetActive(true); // 타이틀 텍스트 자식으로 된 텍스트까지 가져온다
             UIManager.instance.stageText.gameObject.SetActive(true);
 
             isGameStart = true;

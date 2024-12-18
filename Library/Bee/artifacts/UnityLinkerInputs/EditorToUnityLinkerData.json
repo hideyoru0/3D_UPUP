@@ -173,6 +173,13 @@
             "usedInScenes": []
         },
         {
+            "managedAssemblyName": "Assembly-CSharp.dll",
+            "nativeClass": "",
+            "fullManagedTypeName": "UIManager",
+            "moduleName": "",
+            "usedInScenes": []
+        },
+        {
             "managedAssemblyName": "UnityEngine.dll",
             "nativeClass": "AnimatorController",
             "fullManagedTypeName": "UnityEditor.Animations.AnimatorController",
@@ -3328,6 +3335,9 @@
     ],
     "forceIncludeModules": [],
     "forceExcludeModules": [
-        "NVIDIA"
+        "ClusterInput",
+        "ClusterRenderer",
+        "NVIDIA",
+        "VirtualTexturing"
     ]
 }
